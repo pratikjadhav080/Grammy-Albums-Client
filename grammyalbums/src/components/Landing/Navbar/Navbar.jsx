@@ -1,11 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../../../Store/AuthStore/action';
 import styles from "./Navbar.module.css"
 
 export const Navbar = () => {
 
+    const dispatch = useDispatch();
     const [genres, setGenre] = useState([])
+    const { isAuth } = useSelector(store => store)
+
+    const logout = () => {
+        dispatch(logoutUser())
+    }
 
     useEffect(() => {
         fetchGenres()
@@ -43,9 +51,13 @@ export const Navbar = () => {
         })}
 
         <div>
-            <Link to="/artistpanel">
-                <h1>Artist Login</h1>
+            <Link to="/artistlogin">
+                <h1>{isAuth ? "Artist Panel" : "Artist Login"}</h1>
             </Link>
+        </div>
+
+        <div>
+            {isAuth ? <button className={styles.btn} onClick={logout}>LOGOUT</button> : ""}
         </div>
     </div >
 }

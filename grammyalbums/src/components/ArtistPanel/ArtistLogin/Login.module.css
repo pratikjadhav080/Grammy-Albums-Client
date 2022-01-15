@@ -1,0 +1,23 @@
+.login input{
+    outline: none;
+    border:none;
+    border-bottom: 2px solid black;
+    width:200px;
+    padding:10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.login input:active{
+    outline: none;
+}
+
+.btn{
+    background-color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    color:white;
+}
