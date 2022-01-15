@@ -14,7 +14,8 @@ export const loginUser = (loginData) => async (dispatch) => {
 
     try {
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, loginData)
-        console.log(res.data.token,res.data.artist)
+        console.log(res.data)
+        localStorage.setItem("UserData", JSON.stringify(res.data));
         dispatch(Actions(LOGIN_SUCCESS, res.data.token))
     } catch (err) {
         dispatch(Actions(LOGIN_FAILURE, err))

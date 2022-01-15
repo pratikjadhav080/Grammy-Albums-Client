@@ -42,6 +42,7 @@ export const Navbar = () => {
                 <h1>All</h1>
             </Link>
         </div>
+        
         {genres.map((e) => {
             return <div key={e._id}>
                 <Link to={`/showAlbums/${e._id}`}>
