@@ -1,15 +1,15 @@
 import { Switch, Route, Link } from 'react-router-dom'
-import { Landing } from '../Landing/Landing'
+import { Albums } from '../Landing/Content/Albums'
 
 export const Allroutes = () => {
     return <Switch>
 
         <Route exact path="/">
-            <Landing />
+            <Albums/>
         </Route>
 
         <Route path="/showAlbums/:id">
-          <Postshow />
+            <Albums/>
         </Route>
 
         {/* <Route exact path="/cult">
