@@ -40,8 +40,12 @@ export const Navbar = () => {
                     <h1>{e.genrename}</h1>
                 </Link>
             </div>
-        })
+        })}
 
-        }
+        <div>
+            <Link to="/artistpanel">
+                <h1>Artist Login</h1>
+            </Link>
+        </div>
     </div >
 }
