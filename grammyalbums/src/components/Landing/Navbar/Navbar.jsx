@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styles from "./Navbar.module.css"
 
 export const Navbar = () => {
 
@@ -22,7 +23,7 @@ export const Navbar = () => {
     }
 
 
-    return <div>
+    return <div className={styles.mainNavbar}>
         <div>
             <Link to="/">
                 <img src="/images/grammyicon.svg" alt="" />

@@ -1,0 +1,13 @@
+.mainNavbar{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.mainNavbar img{
+    width: 100px;
+}
+
+.mainNavbar>div{
+    margin-right: 20px;
+}
