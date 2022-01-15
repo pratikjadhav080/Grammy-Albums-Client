@@ -13,7 +13,7 @@ export const Navbar = () => {
     const fetchGenres = () => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/genres`, { withCredentials: true })
             .then(res => {
-                console.log("data", res.data)
+                // console.log("data", res.data)
                 setGenre(res.data)
             })
             .catch(err => {
