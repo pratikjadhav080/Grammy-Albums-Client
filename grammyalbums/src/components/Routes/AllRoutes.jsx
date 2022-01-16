@@ -1,4 +1,5 @@
 import { Switch, Route, Link } from 'react-router-dom'
+import { AlbumDetail } from '../AlbumDetails/AlbumDetail'
 import { ArtistData } from '../ArtistPanel/ArtistData/ArtistHome'
 import { Login } from '../ArtistPanel/ArtistLogin/Login'
 import { Albums } from '../Landing/Content/Albums'
@@ -15,7 +16,7 @@ export const Allroutes = () => {
         </Route>
 
         <Route path="/albumdetails/:id">
-            <Albums/>
+            <AlbumDetail/>
         </Route>
 
         <Route path="/artistlogin">
