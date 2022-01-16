@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import { AlbumCard } from "./AlbumCard";
 
 export const Albums = () => {
 
@@ -30,7 +31,7 @@ export const Albums = () => {
                 console.log("Error", err);
             })
     }
-//setSort(e.target.value)
+
     return <div>
 
         <label>Sort by year of Album release</label>
@@ -41,10 +42,8 @@ export const Albums = () => {
             <option value="-1">new to old</option>
         </select>
 
-        {albumlist?.map((e) => {
-            return <h1 key={e._id}>{e.albumname}-{e.dateofrelease}</h1>
-        })}
-
+        <AlbumCard prop={albumlist}/>
+        
         {albumlist.length ? <div>
             <button disabled={page === 1 ? true : false} onClick={() => setPage(page - 1)}>Back</button>
             <button disabled={page === totalPage ? true : false} onClick={() => setPage(page + 1)}>Next</button>

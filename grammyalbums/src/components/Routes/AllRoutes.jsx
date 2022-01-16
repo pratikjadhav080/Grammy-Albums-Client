@@ -14,6 +14,10 @@ export const Allroutes = () => {
             <Albums/>
         </Route>
 
+        <Route path="/albumdetails/:id">
+            <Albums/>
+        </Route>
+
         <Route path="/artistlogin">
             <Login/>
         </Route>
