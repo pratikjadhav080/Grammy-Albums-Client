@@ -25,10 +25,10 @@ export const ArtistData = () =>{
 
     return <div>
         <h1>You are successfully logged in</h1>
-        <h1>{artistprofile.name}</h1>
-        <img src={artistprofile.photo} alt=""/>
-        {artistprofile.albumids.map((e)=>{
-            return <h1>{e.albumname}</h1>
+        <h1>{artistprofile?.name}</h1>
+        <img src={artistprofile?.photo} alt=""/>
+        {artistprofile?.albumids?.map((e,i)=>{
+            return <h1 key={i}>{e.albumname}</h1>
         })}
     </div>
 }
