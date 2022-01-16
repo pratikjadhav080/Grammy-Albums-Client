@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { AlbumCard } from "../../Landing/Content/AlbumCard";
 
 export const ArtistData = () =>{
 
@@ -27,8 +28,6 @@ export const ArtistData = () =>{
         <h1>You are successfully logged in</h1>
         <h1>{artistprofile?.name}</h1>
         <img src={artistprofile?.photo} alt=""/>
-        {artistprofile?.albumids?.map((e,i)=>{
-            return <h1 key={i}>{e.albumname}</h1>
-        })}
+        <AlbumCard prop={artistprofile?.albumids}/>
     </div>
 }

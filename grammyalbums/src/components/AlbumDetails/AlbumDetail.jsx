@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Songs } from "./SongDetails";
 
 export const AlbumDetail = () =>{
 
@@ -29,5 +30,6 @@ export const AlbumDetail = () =>{
         <h1>{album.albumname}</h1>
         <img src={album.coverphoto}/>
         <h1>{album.dateofrelease}</h1>
+        <Songs prop={album?.songids}/>
     </div>
 }
