@@ -54,11 +54,3 @@ export const Addalbum = () => {
         <button onClick={CreateAlbum}>Create New Album</button>
     </div>
 }
-
-
-// "albumname": "1989",
-// "artistid":
-// "genreid":
-// "coverphoto": "https://i.scdn.co/image/ab67616d00001e02b7e976d2b35c767f9012cb72",
-// "dateofrelease": "2014-01-01",
-// "songids": [],

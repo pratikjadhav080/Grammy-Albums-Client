@@ -37,7 +37,7 @@ export const ArtistData = () => {
         <h1>You are successfully logged in</h1>
         <div className={styles.updatelinks}>
             <Link to="/artistprofile">
-                <h1>Click here to see the Artist Profile</h1>
+                <h1>Click here to see and update the Artist Profile</h1>
             </Link>
 
             <Link to="/addalbum">
