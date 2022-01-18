@@ -11,7 +11,7 @@ export const Navbar = () => {
     const dispatch = useDispatch();
     const [genres, setGenre] = useState([])
     const [list, setList] = useState([])
-    const [flag,setFlag] = useState(false)
+    const [flag, setFlag] = useState(false)
     const { isAuth } = useSelector(store => store)
 
     const logout = () => {
@@ -25,7 +25,6 @@ export const Navbar = () => {
     const fetchGenres = () => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/genres`, { withCredentials: true })
             .then(res => {
-                // console.log("data", res.data)
                 setGenre(res.data)
             })
             .catch(err => {
@@ -33,11 +32,11 @@ export const Navbar = () => {
             })
     }
 
-
     function debounce(func, search, delay) {
 
+        // console.log(search.length)
+
         if (search.length < 3) {
-            // char_div.style.display = "none"
             return false;
         }
 
@@ -58,11 +57,22 @@ export const Navbar = () => {
                 .then(res => {
                     console.log("data", res.data)
                     setList(res.data)
+                    // console.log(document.getElementById("searchid").value)
+                    if (document.getElementById("searchid").value.length < 3) {
+                        setFlag(false);
+                    } else {
+                        setFlag(true)
+                    }
                 })
                 .catch(err => {
                     console.log("Error", err);
                 })
         }
+    }
+
+    const albumDetails = () =>{
+        document.getElementById("searchid").value=""
+        setFlag(false)
     }
 
     return <div className={styles.mainNavbar}>
@@ -71,16 +81,21 @@ export const Navbar = () => {
                 <img src="/images/grammyicon.svg" alt="" />
             </Link>
         </div>
-        <div>
-            <input onChange={(e) => debounce(searchAlbums, e.target.value, 1000)} placeholder='search' />
-            <div className={styles.dataresult}>
+
+        <div className={styles.searchbox}>
+
+            <input id="searchid" onChange={(e) => debounce(searchAlbums, e.target.value, 1000)} placeholder='search' />
+
+            {flag ? <div className={styles.dataresult}>
                 {list.map((e) => {
-                    return <Link  className={styles.dataItem} key={e._id} to={`/albumdetails/${e._id}`}>
+                    return <Link onClick={albumDetails} className={styles.dataItem} key={e._id} to={`/albumdetails/${e._id}`}>
                         <p >{e.albumname}</p>
                     </Link>
                 })}
-            </div>
+            </div> : ""}
+
         </div>
+        
         <div>
             <Link to="/showAlbums/all">
                 <h1>All</h1>

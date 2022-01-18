@@ -27,7 +27,7 @@
 
 .dataresult{
     position: absolute;
-    z-index: 2;
+    top:60px;
     margin-top: 5px;
     width: 300px;
     background-color: white;
@@ -54,6 +54,11 @@
 
 .dataItem:hover {
     background-color: lightgrey;
+}
+
+.searchbox{
+    display: flex;
+    align-items: center;
 }
 
 /* rgb(211, 130, 25); */
