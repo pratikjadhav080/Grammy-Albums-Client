@@ -1,12 +1,22 @@
+import axios from "axios";
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { InlineEdit } from "./Editing";
 
 export const ArtistProfile = () => {
 
     const [profile, setProfile] = useState({})
+    const { isAuth } = useSelector(store => store)
+    const history = useHistory();
 
     useEffect(() => {
-        getData()
-    }, [])
+        if (!isAuth) {
+            history.push("/artistlogin")
+        } else {
+            getData()
+        }
+    }, [isAuth])
 
     const getData = () => {
         console.log("loggedin")
@@ -15,21 +25,38 @@ export const ArtistProfile = () => {
         setProfile(artistdata.artist)
     }
 
-    const ChangeProfileDetails = (e) => {
-        let { name, value } = e.target
+    const patchProfileData = () => {
 
-        setProfile({
-            ...profile,
-            [name]: value
-        })
+        let finalData = {
+            name: profile.name,
+            email: profile.email,
+            age: profile.age,
+            gender: profile.gender,
+            photo: profile.photo
+        }
+
+        axios.patch(`${process.env.REACT_APP_BACKEND_URL}/artists/${profile._id}`, finalData)
+            .then(res => {
+                console.log("data", res.data)
+                history.push("/artisthome")
+            })
+            .catch(err => {
+                console.log("Error", err);
+            })
     }
 
     return <>
-        <input type="text" name="name" onChange={ChangeProfileDetails} />
-        <h1>Name - {profile.name}</h1>
-        <img src={profile.photo} />
-        <h1>Email - {profile.email}</h1>
-        <h1>Age - {profile.age}</h1>
-        <h1>Gender - {profile.gender}</h1>
+
+        <img src={profile.photo} alt="" /><br />
+
+        {Object.keys(profile).length > 0 ? <>
+            <InlineEdit profiledata={profile} name="name" value={profile.name} setValue={setProfile} /><br />
+            <InlineEdit profiledata={profile} name="email" value={profile.email} setValue={setProfile} /><br />
+            <InlineEdit profiledata={profile} name="age" value={profile.age} setValue={setProfile} /><br />
+            <InlineEdit profiledata={profile} name="gender" value={profile.gender} setValue={setProfile} /><br />
+            <InlineEdit profiledata={profile} name="photo" value={profile.photo} setValue={setProfile} /><br />
+        </> : ""}
+
+        <button onClick={patchProfileData}>Save</button>
     </>
 }

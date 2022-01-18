@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
 
 export const AlbumCard = ({ prop }) => {
+
+    console.log(prop)
+
     return <>
-        {prop?.map((e) => {
-            return <Link key={e._id} to={`/albumdetails/${e._id}`}>
+        {prop?.map((e,i) => {
+            return <Link key={i} to={`/albumdetails/${e._id}`}>
                 <h1 >{e.albumname} {e.dateofrelease}</h1>
             </Link>
         })}

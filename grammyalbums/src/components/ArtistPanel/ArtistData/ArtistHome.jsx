@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -19,9 +20,19 @@ export const ArtistData = () => {
 
     const getData = () => {
         console.log("loggedin")
-        let artistdata = JSON.parse(localStorage.getItem("UserData"))
-        console.log("datafromlocalstorage", artistdata)
-        setArtistprofile(artistdata.artist)
+        let artistid = JSON.parse(localStorage.getItem("artistid"))
+        console.log("artistid", artistid)
+
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${artistid}`, { withCredentials: true })
+        .then(res => {
+            console.log("data", res.data)
+            setArtistprofile(res.data)
+        })
+        .catch(err => {
+            console.log("Error", err);
+        })
+
+        // setArtistprofile(artistdata.artist)
     }
 
     return <div>
