@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { AlbumCard } from "../../Landing/Content/AlbumCard";
+import styles from "./ArtistHome.module.css"
 
 export const ArtistData = () => {
 
@@ -19,27 +20,35 @@ export const ArtistData = () => {
     }, [isAuth])
 
     const getData = () => {
-        console.log("loggedin")
         let artistid = JSON.parse(localStorage.getItem("artistid"))
         console.log("artistid", artistid)
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${artistid}`, { withCredentials: true })
-        .then(res => {
-            console.log("data", res.data)
-            setArtistprofile(res.data)
-        })
-        .catch(err => {
-            console.log("Error", err);
-        })
-
-        // setArtistprofile(artistdata.artist)
+            .then(res => {
+                console.log("data", res.data)
+                setArtistprofile(res.data)
+            })
+            .catch(err => {
+                console.log("Error", err);
+            })
     }
 
     return <div>
         <h1>You are successfully logged in</h1>
-        <Link to="/artistprofile">
-            <h1>Click here to see the Artist Profile</h1>
-        </Link>
+        <div className={styles.updatelinks}>
+            <Link to="/artistprofile">
+                <h1>Click here to see the Artist Profile</h1>
+            </Link>
+
+            <Link to="/addalbum">
+                <h1>Add a new Album</h1>
+            </Link>
+
+            <Link to="/addsongs">
+                <h1>Add new songs</h1>
+            </Link>
+
+        </div>
 
         <h1>{artistprofile?.name}</h1>
         <img src={artistprofile?.photo} alt="" />

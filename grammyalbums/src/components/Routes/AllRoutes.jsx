@@ -1,5 +1,7 @@
 import { Switch, Route, Link } from 'react-router-dom'
 import { AlbumDetail } from '../AlbumDetails/AlbumDetail'
+import { Addalbum } from '../ArtistPanel/ArtistData/AddAlbum'
+import { AddSong } from '../ArtistPanel/ArtistData/AddSong'
 import { ArtistData } from '../ArtistPanel/ArtistData/ArtistHome'
 import { ArtistProfile } from '../ArtistPanel/ArtistData/ArtistProfile'
 import { Login } from '../ArtistPanel/ArtistLogin/Login'
@@ -33,12 +35,20 @@ export const Allroutes = () => {
             <ArtistProfile/>
         </Route>
 
+        <Route path="/addalbum">
+            <Addalbum/>
+        </Route>
+
+        <Route path="/addsongs">
+            <AddSong/>
+        </Route>
+
         <Route>
             <h1>404, Route Does not exist</h1>
             <Link to="/">
                 <button>Go Back</button>
             </Link>
         </Route>
-        
+
     </Switch>
 }
