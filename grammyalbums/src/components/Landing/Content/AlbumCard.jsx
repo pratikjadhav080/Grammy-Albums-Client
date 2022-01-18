@@ -10,5 +10,3 @@ export const AlbumCard = ({ prop }) => {
         })}
     </>
 }
-
-{/* <h1 key={e._id}>{e.albumname} {e.dateofrelease}</h1>  */ }

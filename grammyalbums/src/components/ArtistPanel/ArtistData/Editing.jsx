@@ -3,10 +3,6 @@ import { useEffect, useState } from 'react';
 export const InlineEdit = ({ profiledata,name,value, setValue }) => {
   const [editingValue, setEditingValue] = useState(value);
 
-  // useEffect(()=>{
-  //   console.log(profiledata)
-  // },[])
-
   const onChange = (event) => setEditingValue(event.target.value);
 
   const onKeyDown = (event) => {
@@ -21,7 +17,6 @@ export const InlineEdit = ({ profiledata,name,value, setValue }) => {
     if (event.target.value.trim() === "") {
       setEditingValue(value);
     } else {
-      console.log("elseparthere",editingValue)
       setValue({
         ...profiledata,
         [name]: event.target.value

@@ -19,13 +19,10 @@ export const ArtistProfile = () => {
     }, [isAuth])
 
     const getData = () => {
-        console.log("loggedin")
         let artistid = JSON.parse(localStorage.getItem("artistid"))
-        console.log("artistid", artistid)
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${artistid}`, { withCredentials: true })
         .then(res => {
-            console.log("data", res.data)
             setProfile(res.data)
         })
         .catch(err => {
@@ -46,7 +43,6 @@ export const ArtistProfile = () => {
 
         axios.patch(`${process.env.REACT_APP_BACKEND_URL}/artists/${profile._id}`, finalData)
             .then(res => {
-                console.log("data", res.data)
                 history.push("/artisthome")
             })
             .catch(err => {

@@ -22,7 +22,6 @@ export const AddSong = () => {
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${id}`, { withCredentials: true })
             .then(res => {
-                console.log("data", res.data)
                 setAlbumlist(res.data.albumids)
             })
             .catch(err => {
@@ -32,7 +31,6 @@ export const AddSong = () => {
 
     const addData = (e) =>{
         const {name,value} = e.target
-        console.log(name,value)
 
         setSongData({
             ...songdata,
@@ -41,7 +39,6 @@ export const AddSong = () => {
     }
 
     const addSong = () =>{
-        console.log(songdata)
 
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/songs`,songdata)
         .then(res => {

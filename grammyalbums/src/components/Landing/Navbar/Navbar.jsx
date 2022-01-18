@@ -34,8 +34,6 @@ export const Navbar = () => {
 
     function debounce(func, search, delay) {
 
-        // console.log(search.length)
-
         if (search.length < 3) {
             return false;
         }
@@ -55,9 +53,9 @@ export const Navbar = () => {
         if (search) {
             axios.get(`${process.env.REACT_APP_BACKEND_URL}/albums/searchbyname?search=${search}`, { withCredentials: true })
                 .then(res => {
-                    console.log("data", res.data)
+                    
                     setList(res.data)
-                    // console.log(document.getElementById("searchid").value)
+
                     if (document.getElementById("searchid").value.length < 3) {
                         setFlag(false);
                     } else {
@@ -95,7 +93,7 @@ export const Navbar = () => {
             </div> : ""}
 
         </div>
-        
+
         <div>
             <Link to="/showAlbums/all">
                 <h1>All</h1>

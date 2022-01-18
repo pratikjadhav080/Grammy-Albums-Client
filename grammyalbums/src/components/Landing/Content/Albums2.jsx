@@ -11,25 +11,21 @@ export const Albums2 = () => {
     const params=new URLSearchParams(search);
     const pagenum = params.get("p")
     const sortnum = params.get("s")
-    // console.log(pagenum,sortnum)
     const [albumlist, setAlbumlist] = useState([])
     const [page, setPage] = useState(1)
     const [sort, setSort] = useState("")
     const [totalPage, setTotalPage] = useState(null)
     
     useEffect(()=>{
-        // console.log("pagenum")
         setPage(+pagenum || 1)
         setSort(+sortnum || "")
-    },[pagenum,sortnum]) //sortnum
+    },[pagenum,sortnum]) 
 
     useEffect(() => {
-        // console.log("fetchAlbums")
         fetchAlbums()
     }, [obj])
 
     const changeURL = (p,s) =>{
-        // console.log(p,s)
 
         let finalLink;
         let pageparam= p?`p=${p}`:""
@@ -46,21 +42,16 @@ export const Albums2 = () => {
         }else{
             finalLink=directionLink
         }
-        
-        console.log(finalLink)
 
         history.push(finalLink)
     }
 
     const fetchAlbums = () => {
 
-        // console.log("p",pagenum)
-
         const URL = obj.id === "all" || obj.id === undefined ? `${process.env.REACT_APP_BACKEND_URL}/albums?page=${pagenum||1}&sort=${sortnum||sort}` : `${process.env.REACT_APP_BACKEND_URL}/genres/${obj.id}?page=${pagenum||1}&sort=${sortnum||sort}`
 
         axios.get(URL, { withCredentials: true })
             .then(res => {
-                // console.log("data", res.data.albums)
                 setAlbumlist(res.data.albums)
                 setTotalPage(res.data.totalPages)
             })

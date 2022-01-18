@@ -13,7 +13,6 @@ export const AlbumDetail = () =>{
     },[obj])
 
     const fetchAlbum=()=>{
-        // console.log(obj.id)
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/albums/${obj.id}`, { withCredentials: true })
         .then(res => {

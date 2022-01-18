@@ -14,7 +14,6 @@ export const Addalbum = () => {
 
     const addData = (e) =>{
         const {name,value} = e.target
-        console.log(name,value)
 
         setAlbumData({
             ...albumdata,
@@ -23,7 +22,6 @@ export const Addalbum = () => {
     }
 
     const CreateAlbum = () =>{
-        console.log(albumdata)
 
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/albums`,albumdata)
         .then(res => {

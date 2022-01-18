@@ -21,11 +21,9 @@ export const ArtistData = () => {
 
     const getData = () => {
         let artistid = JSON.parse(localStorage.getItem("artistid"))
-        console.log("artistid", artistid)
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${artistid}`, { withCredentials: true })
             .then(res => {
-                console.log("data", res.data)
                 setArtistprofile(res.data)
             })
             .catch(err => {
