@@ -46,9 +46,11 @@ export const Albums = () => {
 
         {albumlist.length ? <div>
             {page === 1 ? "" :  <button onClick={() => setPage(page - 1)}>Back</button>}
+
             {[...Array(totalPage)].map((e,i) => {
-                return <button key={i} onClick={() => setPage(i+1)}>{i+1}</button>
+                return <button style={{backgroundColor:page===i+1?"red":"white"}} key={i} onClick={() => setPage(i+1)}>{i+1}</button>
             })}
+
             {page === totalPage ? "" : <button onClick={() => setPage(page + 1)}>Next</button>} 
         </div> : ""
         }

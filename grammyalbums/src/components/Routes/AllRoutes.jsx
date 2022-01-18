@@ -3,17 +3,21 @@ import { AlbumDetail } from '../AlbumDetails/AlbumDetail'
 import { ArtistData } from '../ArtistPanel/ArtistData/ArtistHome'
 import { ArtistProfile } from '../ArtistPanel/ArtistData/ArtistProfile'
 import { Login } from '../ArtistPanel/ArtistLogin/Login'
-import { Albums } from '../Landing/Content/Albums'
+// import { Albums } from '../Landing/Content/Albums'
+import { Albums2 } from '../Landing/Content/Albums2'
 
 export const Allroutes = () => {
+
     return <Switch>
 
         <Route exact path="/">
-            <Albums/>
+            {/* <Albums/> */}
+            <Albums2/>
         </Route>
 
         <Route path="/showAlbums/:id">
-            <Albums/>
+            {/* <Albums/> */}
+            <Albums2/>
         </Route>
 
         <Route path="/albumdetails/:id">
