@@ -16,7 +16,6 @@ export const AlbumDetail = () =>{
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/albums/${obj.id}`, { withCredentials: true })
         .then(res => {
-            console.log("data", res.data)
             setAlbum(res.data)
         })
         .catch(err => {
