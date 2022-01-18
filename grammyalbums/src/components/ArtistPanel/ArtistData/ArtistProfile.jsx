@@ -20,9 +20,18 @@ export const ArtistProfile = () => {
 
     const getData = () => {
         console.log("loggedin")
-        let artistdata = JSON.parse(localStorage.getItem("UserData"))
-        console.log("datafromlocalstorage", artistdata)
-        setProfile(artistdata.artist)
+        let artistid = JSON.parse(localStorage.getItem("artistid"))
+        console.log("artistid", artistid)
+
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/artists/${artistid}`, { withCredentials: true })
+        .then(res => {
+            console.log("data", res.data)
+            setProfile(res.data)
+        })
+        .catch(err => {
+            console.log("Error", err);
+        })
+
     }
 
     const patchProfileData = () => {
@@ -50,11 +59,11 @@ export const ArtistProfile = () => {
         <img src={profile.photo} alt="" /><br />
 
         {Object.keys(profile).length > 0 ? <>
-            <InlineEdit profiledata={profile} name="name" value={profile.name} setValue={setProfile} /><br />
-            <InlineEdit profiledata={profile} name="email" value={profile.email} setValue={setProfile} /><br />
-            <InlineEdit profiledata={profile} name="age" value={profile.age} setValue={setProfile} /><br />
-            <InlineEdit profiledata={profile} name="gender" value={profile.gender} setValue={setProfile} /><br />
-            <InlineEdit profiledata={profile} name="photo" value={profile.photo} setValue={setProfile} /><br />
+            Name : <InlineEdit profiledata={profile} name="name" value={profile.name} setValue={setProfile} /><br />
+            Email : <InlineEdit profiledata={profile} name="email" value={profile.email} setValue={setProfile} /><br />
+            Age : <InlineEdit profiledata={profile} name="age" value={profile.age} setValue={setProfile} /><br />
+            Gender : <InlineEdit profiledata={profile} name="gender" value={profile.gender} setValue={setProfile} /><br />
+            Photo : <InlineEdit profiledata={profile} name="photo" value={profile.photo} setValue={setProfile} /><br />
         </> : ""}
 
         <button onClick={patchProfileData}>Save</button>
